@@ -65,7 +65,6 @@ const howMuchPencil = (str) => {
   for(let i = 0; i <= `${str.length}`; i++) {
     result.push(str.slice(i));
   }
-  // console.log(result);
   return result;
 };
 
@@ -127,30 +126,30 @@ const gruffaloCrumble = {
 
   ]
 };
-function listFoods(gruffaloCrumble){
-//   gruffaloCrumble.steps.push('oats brown sugar flour pure maple syrup chopped nuts baking soda baking powder cinnamon melted butter fresh water')
-//   let ingredients;
-//   let steps;
-//   let matches = [];
-//   const ingredientsA = [];
-//   for(let i = 0; i < gruffaloCrumble.ingredients.length; i++){
-//     ingredients = gruffaloCrumble.ingredients[i].toString();
-//     ingredients = ingredients.match(/[A-z]+/ig).join(' ');
-//     ingredientsA.push(ingredients);
-//   }
-//   for(let i = 0; i < gruffaloCrumble.steps.length; i++){
-//     steps = gruffaloCrumble.steps.toString();
-//     // steps = steps.match(/[A-z]+/ig).join(' ');
-//   }
-//   steps = steps.match(/[A-z]+/ig).join(' ');
-//   let regex = /^[\S][A-z][a-z]+/
-//   for(let i = 0; i < ingredientsA.length; i++) {
-//     for(let x = 0; x < ingredientsA[i].length; x++) {
-//       for(let j = 0; j < steps.length; j++) {
-//         for(let s = 0; s < steps.length; s++) {
-//           if(regex.test(ingredientsA[i].slice(x,ingredientsA[i].length)) === true && matches.indexOf(ingredientsA[i].slice(x,ingredientsA[i].length)) < 0 && steps.slice(j,s) === ingredientsA[i].toLowerCase().slice(x,ingredientsA[i].length)){
-//             matches.push(ingredientsA[i].slice(x,ingredientsA[i].length));
-//             // console.log(matches)
+function listFoods(recipe){
+  // gruffaloCrumble.steps.push('oats brown sugar flour pure maple syrup chopped nuts baking soda baking powder cinnamon melted butter fresh water')
+  // let ingredients;
+  // let steps;
+  // let matches = [];
+  // const ingredientsA = [];
+  // for(let i = 0; i < gruffaloCrumble.ingredients.length; i++){
+  //   ingredients = gruffaloCrumble.ingredients[i].toString();
+  //   ingredients = ingredients.match(/[A-z]+/ig).join(' ');
+  //   ingredientsA.push(ingredients);
+  // }
+  // for(let i = 0; i < gruffaloCrumble.steps.length; i++){
+  //   steps = gruffaloCrumble.steps.toString();
+  //   // steps = steps.match(/[A-z]+/ig).join(' ');
+  // }
+  // steps = steps.match(/[A-z]+/ig).join(' ');
+  // let regex = /^[\S][A-z][a-z]+/
+  // for(let i = 0; i < ingredientsA.length; i++) {
+  //   for(let x = 0; x < ingredientsA[i].length; x++) {
+  //     for(let j = 0; j < steps.length; j++) {
+  //       for(let s = 0; s < steps.length; s++) {
+  //         if(regex.test(ingredientsA[i].slice(x,ingredientsA[i].length)) === true && matches.indexOf(ingredientsA[i].slice(x,ingredientsA[i].length)) < 0 && steps.slice(j,s) === ingredientsA[i].toLowerCase().slice(x,ingredientsA[i].length)){
+  //           matches.push(ingredientsA[i].slice(x,ingredientsA[i].length));
+  //           // console.log(matches)
 
   //           }
   //         }
@@ -162,9 +161,15 @@ function listFoods(gruffaloCrumble){
   //   console.log(matches);
   //   return matches;
   let result = [];
-  gruffaloCrumble.ingredients.forEach(ingredient => {
-    result.push(ingredient.split(' ').slice(2).join(' '));
+  recipe.ingredients.forEach(ingredient => {
+    let str = ingredient.slice(ingredient.indexOf(' ') + 1);
+    let ingr = str.slice(str.indexOf(' ') +1);
+    console.log(str)
+    result.push(ingr);
+
+
   })
+  console.log(result);
   return result;
 
 }
@@ -178,7 +183,9 @@ You may also use other string or array methods.
 
 const splitFoods = (recipe) => {
   let result = [];
-  // Solution code here...
+  recipe.ingredients.forEach(ingredient => {
+    result.push(ingredient.split(' ').slice(2).join(' '));
+  })
   return result;
 };
 
@@ -193,8 +200,15 @@ Return a new array containing just the verbs. For example, ['Mix until evenly di
 ------------------------------------------------------------------------------------------------ */
 
 const stepActions = (recipe) => {
+  let temp = []
   let result = [];
-  // Solution code here...
+  recipe.steps.forEach(step => {
+    temp.push(step.split(' '));
+  })
+  temp.forEach(arr => {
+    result.push(arr.splice(0,1).join(' '));
+  })
+  // console.log(result)
   return result;
 };
 
@@ -212,7 +226,9 @@ For example:
 ------------------------------------------------------------------------------------------------ */
 
 const removeEvenValues = (arr) => {
-  // Solution code here...
+  arr = arr.filter(num => Number.isInteger(num/2) === false);
+  console.log(arr)
+  return arr
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -319,20 +335,20 @@ describe('Testing challenge 4', () => {
   });
 });
 
-xdescribe('Testing challenge 5', () => {
+describe('Testing challenge 5', () => {
   test('It should return a list of foods', () => {
     expect(splitFoods(gruffaloCrumble)).toStrictEqual(['Gruffalo', 'oats', 'brown sugar', 'flour', 'pure maple syrup', 'chopped nuts', 'baking soda', 'baking powder', 'cinnamon', 'melted butter', 'fresh water']);
   });
 });
 
-xdescribe('Testing challenge 6', () => {
+describe('Testing challenge 6', () => {
   test('It should return a list of recipe steps', () => {
     expect(stepActions(gruffaloCrumble)).toStrictEqual(['Pre-heat', 'De-prickle', 'Sprinkle', 'Mix', 'Grease', 'Combine', 'Fold', 'Spread', 'Bake']);
     expect(stepActions(gruffaloCrumble).length).toStrictEqual(9);
   });
 });
 
-xdescribe('Testing challenge 7', () => {
+describe('Testing challenge 7', () => {
   test('It should remove the even numbers from the array', () => {
     let list = [1, 2, 3, 4, 5, 6];
     removeEvenValues(list);
