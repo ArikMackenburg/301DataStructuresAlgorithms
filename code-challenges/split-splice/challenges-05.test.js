@@ -126,30 +126,30 @@ const gruffaloCrumble = {
 
   ]
 };
-function listFoods(gruffaloCrumble){
-//   gruffaloCrumble.steps.push('oats brown sugar flour pure maple syrup chopped nuts baking soda baking powder cinnamon melted butter fresh water')
-//   let ingredients;
-//   let steps;
-//   let matches = [];
-//   const ingredientsA = [];
-//   for(let i = 0; i < gruffaloCrumble.ingredients.length; i++){
-//     ingredients = gruffaloCrumble.ingredients[i].toString();
-//     ingredients = ingredients.match(/[A-z]+/ig).join(' ');
-//     ingredientsA.push(ingredients);
-//   }
-//   for(let i = 0; i < gruffaloCrumble.steps.length; i++){
-//     steps = gruffaloCrumble.steps.toString();
-//     // steps = steps.match(/[A-z]+/ig).join(' ');
-//   }
-//   steps = steps.match(/[A-z]+/ig).join(' ');
-//   let regex = /^[\S][A-z][a-z]+/
-//   for(let i = 0; i < ingredientsA.length; i++) {
-//     for(let x = 0; x < ingredientsA[i].length; x++) {
-//       for(let j = 0; j < steps.length; j++) {
-//         for(let s = 0; s < steps.length; s++) {
-//           if(regex.test(ingredientsA[i].slice(x,ingredientsA[i].length)) === true && matches.indexOf(ingredientsA[i].slice(x,ingredientsA[i].length)) < 0 && steps.slice(j,s) === ingredientsA[i].toLowerCase().slice(x,ingredientsA[i].length)){
-//             matches.push(ingredientsA[i].slice(x,ingredientsA[i].length));
-//             // console.log(matches)
+function listFoods(recipe){
+  // gruffaloCrumble.steps.push('oats brown sugar flour pure maple syrup chopped nuts baking soda baking powder cinnamon melted butter fresh water')
+  // let ingredients;
+  // let steps;
+  // let matches = [];
+  // const ingredientsA = [];
+  // for(let i = 0; i < gruffaloCrumble.ingredients.length; i++){
+  //   ingredients = gruffaloCrumble.ingredients[i].toString();
+  //   ingredients = ingredients.match(/[A-z]+/ig).join(' ');
+  //   ingredientsA.push(ingredients);
+  // }
+  // for(let i = 0; i < gruffaloCrumble.steps.length; i++){
+  //   steps = gruffaloCrumble.steps.toString();
+  //   // steps = steps.match(/[A-z]+/ig).join(' ');
+  // }
+  // steps = steps.match(/[A-z]+/ig).join(' ');
+  // let regex = /^[\S][A-z][a-z]+/
+  // for(let i = 0; i < ingredientsA.length; i++) {
+  //   for(let x = 0; x < ingredientsA[i].length; x++) {
+  //     for(let j = 0; j < steps.length; j++) {
+  //       for(let s = 0; s < steps.length; s++) {
+  //         if(regex.test(ingredientsA[i].slice(x,ingredientsA[i].length)) === true && matches.indexOf(ingredientsA[i].slice(x,ingredientsA[i].length)) < 0 && steps.slice(j,s) === ingredientsA[i].toLowerCase().slice(x,ingredientsA[i].length)){
+  //           matches.push(ingredientsA[i].slice(x,ingredientsA[i].length));
+  //           // console.log(matches)
 
   //           }
   //         }
@@ -161,9 +161,15 @@ function listFoods(gruffaloCrumble){
   //   console.log(matches);
   //   return matches;
   let result = [];
-  gruffaloCrumble.ingredients.forEach(ingredient => {
-    result.push(ingredient.split(' ').slice(2).join(' '));
+  recipe.ingredients.forEach(ingredient => {
+    let str = ingredient.slice(ingredient.indexOf(' ') + 1);
+    let ingr = str.slice(str.indexOf(' ') +1);
+    console.log(str)
+    result.push(ingr);
+
+
   })
+  console.log(result);
   return result;
 
 }
