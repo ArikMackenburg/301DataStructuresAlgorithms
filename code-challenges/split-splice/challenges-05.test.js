@@ -164,12 +164,12 @@ function listFoods(recipe){
   recipe.ingredients.forEach(ingredient => {
     let str = ingredient.slice(ingredient.indexOf(' ') + 1);
     let ingr = str.slice(str.indexOf(' ') +1);
-    console.log(str)
+    // console.log(str)
     result.push(ingr);
 
 
   })
-  console.log(result);
+  // console.log(result);
   return result;
 
 }
@@ -227,7 +227,7 @@ For example:
 
 const removeEvenValues = (arr) => {
   arr = arr.filter(num => Number.isInteger(num/2) === false);
-  console.log(arr)
+  // console.log(arr)
   return arr
 };
 
