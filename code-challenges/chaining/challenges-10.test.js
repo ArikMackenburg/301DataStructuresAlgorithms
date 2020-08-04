@@ -105,7 +105,7 @@ For example, [ [0,2,5,4], [2,4,10], [] ] should return [ [1, 32], [1024], [] ].
 ------------------------------------------------------------------------------------------------ */
 
 const divisibleByFiveTwoToThePower = (input) => {
-  let divisible = input.map(i=> {return i.filter(x=> {return (typeof x === 'number' && x%5 < 1)})});
+  let divisible = input.map(i=> {return i.filter(x=> {return (typeof x === 'number' && x%5 === 0)})});
   // console.log(divisible)
   let result = divisible.map(i=> {return i.map(x=> {return Math.pow(2,x)})})
   // console.log(result)
