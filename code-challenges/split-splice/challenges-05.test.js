@@ -226,9 +226,12 @@ For example:
 ------------------------------------------------------------------------------------------------ */
 
 const removeEvenValues = (arr) => {
-  arr = arr.filter(num => Number.isInteger(num/2) === false);
-  // console.log(arr)
-  return arr
+  for(let i = arr.length; i>=0; i--) {
+    if(arr[i]%2===0) {
+      arr.splice(i,1);
+    }
+  }
+  console.log(arr);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -247,7 +250,9 @@ removeLastCharacters('Gregor', 9) returns ''
 ------------------------------------------------------------------------------------------------ */
 
 const removeLastCharacters = (str, numberOfCharacters) => {
-  // Solution code here...
+  let end = str.length - numberOfCharacters;
+  str = str.slice(0,end)
+  return str
 };
 
 
@@ -259,7 +264,9 @@ Write a function named totalSumCSV that, given a string of comma-separated value
 
 const totalSumCSV = (str) => {
   let total = 0;
-  // Solution code here...
+  const regex = /[\d]+/gm;
+  let nums = str.match(regex);
+  total = nums.reduce((a,b)=> parseInt(a)+parseInt(b),0)
   return total;
 };
 
@@ -273,7 +280,8 @@ For example, removeVowels('gregor') returns 'grgr'.
 ------------------------------------------------------------------------------------------------ */
 
 const removeVowels = (str) => {
-  // Solution code here...
+  const regex = /[^a,e,i,o,u]/gmi;
+  return str.match(regex).join('');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -287,7 +295,11 @@ Similarly, extractVowels('The quick brown fox') returns ['Th qck brwn fx', 'eioo
 ------------------------------------------------------------------------------------------------ */
 
 const extractVowels = (str) => {
-  // Solution code here...
+  const regex = /[^a,e,i,o,u]/gmi;
+  let first = str.match(regex);
+  const regex2 = /[a,e,i,o,u]/gmi;
+  let second = str.match(regex2);
+  return [first.join(''),second.sort().join('')]
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -348,7 +360,7 @@ describe('Testing challenge 6', () => {
   });
 });
 
-xdescribe('Testing challenge 7', () => {
+describe('Testing challenge 7', () => {
   test('It should remove the even numbers from the array', () => {
     let list = [1, 2, 3, 4, 5, 6];
     removeEvenValues(list);
@@ -361,7 +373,7 @@ xdescribe('Testing challenge 7', () => {
   });
 });
 
-xdescribe('Testing challenge 8', () => {
+describe('Testing challenge 8', () => {
   test('It should shorten the string based on the first argument', () => {
     expect(removeLastCharacters('Gregor', 2)).toStrictEqual('Greg');
     expect(removeLastCharacters('Gregor', 2).length).toStrictEqual(4);
@@ -377,14 +389,14 @@ xdescribe('Testing challenge 8', () => {
   });
 });
 
-xdescribe('Testing challenge 9', () => {
+describe('Testing challenge 9', () => {
   test('It should add up the numbers contained within the string', () => {
     expect(totalSumCSV('1,4,5,7,2')).toStrictEqual(19);
     expect(totalSumCSV('147')).toStrictEqual(147);
   });
 });
 
-xdescribe('Testing challenge 10', () => {
+describe('Testing challenge 10', () => {
   test('It should return the string without vowels', () => {
     expect(removeVowels('gregor')).toStrictEqual('grgr');
     expect(removeVowels('gregor').length).toStrictEqual(4);
@@ -393,7 +405,7 @@ xdescribe('Testing challenge 10', () => {
   });
 });
 
-xdescribe('Testing challenge 11', () => {
+describe('Testing challenge 11', () => {
   test('It should return the string without vowels', () => {
     expect(extractVowels('gregor')).toStrictEqual(['grgr', 'eo']);
     expect(extractVowels('gregor').length).toStrictEqual(2);

@@ -96,7 +96,7 @@ const fizzbuzz = (arr) => {
       output.push('Buzz');
     }else {
       output.push(number);
-    }    
+    }
   });
   return output;
 };
