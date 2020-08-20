@@ -92,7 +92,9 @@ const findTagNames = elements => {
   const regex = /\/[a-z]+\d?/gm;
   let result = [];
   elements.forEach(i=> {
-    result.push(i.match(regex).toString())
+    i.match(regex).forEach(element => {
+      result.push(element)
+    });
   });
   console.log(result)
   return result

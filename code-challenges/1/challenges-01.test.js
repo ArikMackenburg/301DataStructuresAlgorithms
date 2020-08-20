@@ -66,7 +66,7 @@ const createList = (availableItems) => {
   availableItems.forEach(fruit => {
     if(fruit.available === true){
       list.push(fruit.name)
-    };    
+    }
   });
   return list
 };
