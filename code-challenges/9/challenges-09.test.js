@@ -1,5 +1,6 @@
 'use strict';
 
+// eslint-disable-next-line no-unused-vars
 const { response } = require('express');
 
 /* ------------------------------------------------------------------------------------------------
@@ -7,7 +8,7 @@ CHALLENGE 1 - Review
 
 First, write a function called mapCurrentEvents that maps over the current events object, runs it through a constructor function and returns the resulting array.
 
-The constructor function should be a stand alone function named Events and should have the following keys: 
+The constructor function should be a stand alone function named Events and should have the following keys:
 * author
 * categories
 * summary
@@ -42,6 +43,7 @@ const createServer = () => {
     response.status(404).json({ notFound: true });
   }
 
+  // eslint-disable-next-line no-unused-vars
   function errorHandler(error, request, response, next) {
     response.status(500).json({ error: true, message: error.message });
   }
